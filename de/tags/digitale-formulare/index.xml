@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Digitale Formulare on Jonas Kufner – Power Platform Blog</title><link>https://jonaskufner.com/de/tags/digitale-formulare/</link><description>Recent content in Digitale Formulare on Jonas Kufner – Power Platform Blog</description><generator>Hugo -- 0.157.0</generator><language>de</language><lastBuildDate>Thu, 12 Mar 2026 09:00:00 +0100</lastBuildDate><atom:link href="https://jonaskufner.com/de/tags/digitale-formulare/index.xml" rel="self" type="application/rss+xml"/><item><title>Digitale Formulare und strukturierte Datenerfassung mit der Microsoft Power Platform</title><link>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</link><pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</guid><description>Digitale Formulare mit der Microsoft Power Platform: Erfassen Sie Daten strukturiert, reduzieren Sie Fehler und integrieren Sie Formulare direkt in Ihre Geschäftsprozesse.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Digitale Formulare on Jonas Kufner – Power Platform Blog</title>
+    <link>https://jonaskufner.com/de/tags/digitale-formulare/</link>
+    <description>Recent content in Digitale Formulare on Jonas Kufner – Power Platform Blog</description>
+    <generator>Hugo -- 0.157.0</generator>
+    <language>de</language>
+    <lastBuildDate>Thu, 12 Mar 2026 09:00:00 +0100</lastBuildDate>
+    <atom:link href="https://jonaskufner.com/de/tags/digitale-formulare/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Digitale Formulare und strukturierte Datenerfassung mit der Microsoft Power Platform</title>
+      <link>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</link>
+      <pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</guid>
+      <description>Digitale Formulare mit der Microsoft Power Platform: Erfassen Sie Daten strukturiert, reduzieren Sie Fehler und integrieren Sie Formulare direkt in Ihre Geschäftsprozesse.</description>
+    </item>
+  </channel>
+</rss>

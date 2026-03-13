@@ -1,1 +1,68 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Power Platform on Jonas Kufner – Power Platform Blog</title><link>https://jonaskufner.com/de/tags/power-platform/</link><description>Recent content in Power Platform on Jonas Kufner – Power Platform Blog</description><generator>Hugo -- 0.157.0</generator><language>de</language><lastBuildDate>Thu, 12 Mar 2026 09:00:00 +0100</lastBuildDate><atom:link href="https://jonaskufner.com/de/tags/power-platform/index.xml" rel="self" type="application/rss+xml"/><item><title>Automatisierung wiederkehrender Aufgaben mit Power Automate</title><link>https://jonaskufner.com/de/posts/automatisierung-wiederkehrender-aufgaben-power-automate/</link><pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/automatisierung-wiederkehrender-aufgaben-power-automate/</guid><description>Erfahren Sie, wie Unternehmen wiederkehrende Aufgaben mit Power Automate automatisieren und dadurch Zeit sparen, Fehler reduzieren und Prozesse effizienter gestalten.</description></item><item><title>Digitale Formulare und strukturierte Datenerfassung mit der Microsoft Power Platform</title><link>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</link><pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</guid><description>Digitale Formulare mit der Microsoft Power Platform: Erfassen Sie Daten strukturiert, reduzieren Sie Fehler und integrieren Sie Formulare direkt in Ihre Geschäftsprozesse.</description></item><item><title>Digitale Genehmigungsprozesse mit der Microsoft Power Platform</title><link>https://jonaskufner.com/de/posts/digitale-genehmigungsprozesse-power-platform/</link><pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/digitale-genehmigungsprozesse-power-platform/</guid><description>Erfahren Sie, wie Unternehmen Genehmigungsprozesse mit der Microsoft Power Platform digitalisieren und automatisieren. Praxisnaher Use Case mit Power Apps und Power Automate.</description></item><item><title>Individuelle Fachbereichslösungen statt Excel-Insellösungen mit der Microsoft Power Platform</title><link>https://jonaskufner.com/de/posts/fachbereichsloesungen-statt-excel-inselloesungen-power-platform/</link><pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/fachbereichsloesungen-statt-excel-inselloesungen-power-platform/</guid><description>Erfahren Sie, wie Unternehmen Excel-Insellösungen durch strukturierte Fachbereichsanwendungen mit der Microsoft Power Platform ersetzen.</description></item><item><title>Mobile Datenerfassung mit Power Apps (Microsoft Power Platform)</title><link>https://jonaskufner.com/de/posts/mobile-datenerfassung-power-apps/</link><pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/mobile-datenerfassung-power-apps/</guid><description>Mobile Datenerfassung mit Power Apps: Erfassen Sie Daten direkt vor Ort, digitalisieren Sie Formulare und integrieren Sie Ihre Prozesse in die Microsoft Power Platform.</description></item><item><title>Zentrale Verwaltung von Vorgängen und Anfragen mit der Microsoft Power Platform</title><link>https://jonaskufner.com/de/posts/zentrale-verwaltung-vorgaenge-anfragen-power-platform/</link><pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/zentrale-verwaltung-vorgaenge-anfragen-power-platform/</guid><description>Zentrale Verwaltung von Vorgängen und Anfragen mit der Microsoft Power Platform: Strukturieren Sie Anfragen, behalten Sie den Überblick über Bearbeitungsstände und automatisieren Sie Prozesse.</description></item><item><title>Relate Rows in Power Automate – Dataverse-Zeilen einfach verknüpfen</title><link>https://jonaskufner.com/de/posts/relate-rows-power-automate/</link><pubDate>Wed, 29 Oct 2025 10:00:00 +0100</pubDate><guid>https://jonaskufner.com/de/posts/relate-rows-power-automate/</guid><description>Lerne, wie du mit der Power Automate-Aktion &amp;#39;Relate rows&amp;#39; Dataverse-Zeilen korrekt verknüpfst – Schritt-für-Schritt erklärt am Beispiel von Songs und Alben.</description></item><item><title>Einfaches Ticketsystem mit Microsoft Forms, Planner &amp; Power Automate – Schritt-für-Schritt zur schnellen Ticketlösung in Microsoft 365</title><link>https://jonaskufner.com/de/posts/ticketsystem-microsoft-forms-planner-power-automate/</link><pubDate>Sat, 04 Oct 2025 09:00:00 +0200</pubDate><guid>https://jonaskufner.com/de/posts/ticketsystem-microsoft-forms-planner-power-automate/</guid><description>Bauen Sie in &amp;lt; 60 Minuten ein schlankes Ticketsystem auf Basis von Microsoft 365: Formular in Forms, Aufgaben in Planner, Automatisierung mit Power Automate – inkl. Benachrichtigungen in Teams und Abschluss-Workflow. Anleitung mit Ausdrücken &amp;amp; Best Practices.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Power Platform on Jonas Kufner – Power Platform Blog</title>
+    <link>https://jonaskufner.com/de/tags/power-platform/</link>
+    <description>Recent content in Power Platform on Jonas Kufner – Power Platform Blog</description>
+    <generator>Hugo -- 0.157.0</generator>
+    <language>de</language>
+    <lastBuildDate>Thu, 12 Mar 2026 09:00:00 +0100</lastBuildDate>
+    <atom:link href="https://jonaskufner.com/de/tags/power-platform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatisierung wiederkehrender Aufgaben mit Power Automate</title>
+      <link>https://jonaskufner.com/de/posts/automatisierung-wiederkehrender-aufgaben-power-automate/</link>
+      <pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/automatisierung-wiederkehrender-aufgaben-power-automate/</guid>
+      <description>Erfahren Sie, wie Unternehmen wiederkehrende Aufgaben mit Power Automate automatisieren und dadurch Zeit sparen, Fehler reduzieren und Prozesse effizienter gestalten.</description>
+    </item>
+    <item>
+      <title>Digitale Formulare und strukturierte Datenerfassung mit der Microsoft Power Platform</title>
+      <link>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</link>
+      <pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/digitale-formulare-strukturierte-datenerfassung-power-platform/</guid>
+      <description>Digitale Formulare mit der Microsoft Power Platform: Erfassen Sie Daten strukturiert, reduzieren Sie Fehler und integrieren Sie Formulare direkt in Ihre Geschäftsprozesse.</description>
+    </item>
+    <item>
+      <title>Digitale Genehmigungsprozesse mit der Microsoft Power Platform</title>
+      <link>https://jonaskufner.com/de/posts/digitale-genehmigungsprozesse-power-platform/</link>
+      <pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/digitale-genehmigungsprozesse-power-platform/</guid>
+      <description>Erfahren Sie, wie Unternehmen Genehmigungsprozesse mit der Microsoft Power Platform digitalisieren und automatisieren. Praxisnaher Use Case mit Power Apps und Power Automate.</description>
+    </item>
+    <item>
+      <title>Individuelle Fachbereichslösungen statt Excel-Insellösungen mit der Microsoft Power Platform</title>
+      <link>https://jonaskufner.com/de/posts/fachbereichsloesungen-statt-excel-inselloesungen-power-platform/</link>
+      <pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/fachbereichsloesungen-statt-excel-inselloesungen-power-platform/</guid>
+      <description>Erfahren Sie, wie Unternehmen Excel-Insellösungen durch strukturierte Fachbereichsanwendungen mit der Microsoft Power Platform ersetzen.</description>
+    </item>
+    <item>
+      <title>Mobile Datenerfassung mit Power Apps (Microsoft Power Platform)</title>
+      <link>https://jonaskufner.com/de/posts/mobile-datenerfassung-power-apps/</link>
+      <pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/mobile-datenerfassung-power-apps/</guid>
+      <description>Mobile Datenerfassung mit Power Apps: Erfassen Sie Daten direkt vor Ort, digitalisieren Sie Formulare und integrieren Sie Ihre Prozesse in die Microsoft Power Platform.</description>
+    </item>
+    <item>
+      <title>Zentrale Verwaltung von Vorgängen und Anfragen mit der Microsoft Power Platform</title>
+      <link>https://jonaskufner.com/de/posts/zentrale-verwaltung-vorgaenge-anfragen-power-platform/</link>
+      <pubDate>Thu, 12 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/zentrale-verwaltung-vorgaenge-anfragen-power-platform/</guid>
+      <description>Zentrale Verwaltung von Vorgängen und Anfragen mit der Microsoft Power Platform: Strukturieren Sie Anfragen, behalten Sie den Überblick über Bearbeitungsstände und automatisieren Sie Prozesse.</description>
+    </item>
+    <item>
+      <title>Relate Rows in Power Automate – Dataverse-Zeilen einfach verknüpfen</title>
+      <link>https://jonaskufner.com/de/posts/relate-rows-power-automate/</link>
+      <pubDate>Wed, 29 Oct 2025 10:00:00 +0100</pubDate>
+      <guid>https://jonaskufner.com/de/posts/relate-rows-power-automate/</guid>
+      <description>Lerne, wie du mit der Power Automate-Aktion &amp;#39;Relate rows&amp;#39; Dataverse-Zeilen korrekt verknüpfst – Schritt-für-Schritt erklärt am Beispiel von Songs und Alben.</description>
+    </item>
+    <item>
+      <title>Einfaches Ticketsystem mit Microsoft Forms, Planner &amp; Power Automate – Schritt-für-Schritt zur schnellen Ticketlösung in Microsoft 365</title>
+      <link>https://jonaskufner.com/de/posts/ticketsystem-microsoft-forms-planner-power-automate/</link>
+      <pubDate>Sat, 04 Oct 2025 09:00:00 +0200</pubDate>
+      <guid>https://jonaskufner.com/de/posts/ticketsystem-microsoft-forms-planner-power-automate/</guid>
+      <description>Bauen Sie in &amp;lt; 60 Minuten ein schlankes Ticketsystem auf Basis von Microsoft 365: Formular in Forms, Aufgaben in Planner, Automatisierung mit Power Automate – inkl. Benachrichtigungen in Teams und Abschluss-Workflow. Anleitung mit Ausdrücken &amp;amp; Best Practices.</description>
+    </item>
+  </channel>
+</rss>
