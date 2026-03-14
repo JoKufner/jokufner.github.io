@@ -56,15 +56,174 @@
         }
 
     </style>
-</noscript>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17600911035"></script>
-<script>
+</noscript><script>
+  window.KUFNER_GOOGLE_TAG_ID = 'AW-17600911035';
+  window.KUFNER_CONSENT_STORAGE_KEY = 'kufner-consent-v1';
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'AW-17600911035');
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  function kufnerParseConsent(value) {
+    if (value === 'granted') {
+      return {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      };
+    }
+
+    return {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    };
+  }
+
+  function kufnerApplyConsent(state) {
+    gtag('consent', 'update', state);
+    window.dispatchEvent(new CustomEvent('kufner:consent-changed', { detail: state }));
+  }
+
+  function kufnerSaveConsent(value) {
+    try {
+      localStorage.setItem(window.KUFNER_CONSENT_STORAGE_KEY, value);
+    } catch (error) {
+      console.warn('Consent storage unavailable.', error);
+    }
+  }
+
+  function kufnerReadConsent() {
+    try {
+      return localStorage.getItem(window.KUFNER_CONSENT_STORAGE_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  window.KufnerConsent = {
+    acceptAll: function () {
+      var state = kufnerParseConsent('granted');
+      kufnerSaveConsent('granted');
+      kufnerApplyConsent(state);
+      document.documentElement.classList.remove('consent-banner-open');
+    },
+    rejectAll: function () {
+      var state = kufnerParseConsent('denied');
+      kufnerSaveConsent('denied');
+      kufnerApplyConsent(state);
+      document.documentElement.classList.remove('consent-banner-open');
+    },
+    getStoredChoice: kufnerReadConsent
+  };
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+  gtag('js', new Date());
+  gtag('config', window.KUFNER_GOOGLE_TAG_ID);
+
+  (function () {
+    var storedChoice = kufnerReadConsent();
+    if (storedChoice === 'granted' || storedChoice === 'denied') {
+      kufnerApplyConsent(kufnerParseConsent(storedChoice));
+    } else {
+      document.documentElement.classList.add('consent-banner-open');
+    }
+  })();
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17600911035"></script>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1200;
+    width: 100%;
+    min-height: 88px;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border, rgba(0, 0, 0, 0.14));
+    background: var(--theme, #fff);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    display: none;
+    align-items: center;
+  }
+
+  .consent-banner-open .consent-banner {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .consent-banner__title {
+    margin: 0 0 0.45rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .consent-banner__text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    flex: 1 1 auto;
+  }
+
+  .consent-banner__text a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .consent-banner__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex: 0 0 auto;
+    align-items: center;
+  }
+
+  .consent-banner__button {
+    border: 1px solid var(--border, rgba(0, 0, 0, 0.18));
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1rem;
+  }
+
+  .consent-banner__button--primary {
+    background: #FDC448;
+    border-color: #FDC448;
+    color: #111;
+  }
+
+  @media (max-width: 640px) {
+    .consent-banner {
+      min-height: 0;
+      padding: 1rem;
+    }
+
+    .consent-banner__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .consent-banner-open .consent-banner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>
 
 <style>
    
@@ -232,8 +391,8 @@
   "keywords": [
     
   ],
-  "articleBody": "1. Verantwortlicher Jonas Kufner Unternehmensberatung\nFreiberufler: Jonas Kufner\nMurnauer Str. 266\n81379 München\nDeutschland\nE-Mail: info@kufner-solutions.com\nTelefon: +49 176 24893789\n2. Allgemeine Hinweise zur Datenverarbeitung Der Schutz Ihrer persönlichen Daten ist uns wichtig. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.\nBeim Besuch dieser Website werden personenbezogene Daten verarbeitet. Dazu zählen z. B. die IP-Adresse, die automatisch vom Browser an den Server übermittelt wird, sowie weitere technische Daten (Datum, Uhrzeit, Browsertyp, Betriebssystem, Referrer-URL).\n3. Hosting \u0026 Server-Logfiles Diese Website wird über GitHub Pages bereitgestellt. Beim Aufruf der Seiten werden automatisch Server-Logfiles erstellt, die Informationen wie IP-Adresse, Browsertyp, Betriebssystem, Referrer-URL, Datum und Uhrzeit des Zugriffs enthalten.\nRechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an technischer Sicherheit und Stabilität).\nDie Daten werden nicht mit anderen Datenquellen zusammengeführt.\n4. Kontaktformular Wenn Sie uns per Formular Anfragen zukommen lassen, werden Ihre Angaben aus dem Formular inklusive der von Ihnen dort angegebenen Kontaktdaten zur Bearbeitung der Anfrage und für den Fall von Anschlussfragen gespeichert.\nDiese Daten geben wir nicht ohne Ihre Einwilligung weiter.\nZur Erhebung und Verarbeitung Ihrer Anfrage nutzen wir Microsoft Forms, einen Dienst der Microsoft Corporation, der im Rahmen unserer Microsoft 365-Umgebung (Tenant) betrieben wird. Das Formular wird über einen Link auf unserer Website bereitgestellt und führt zu einer sicheren Formularseite unter der Domain forms.office.com. Die von Ihnen eingegebenen Daten werden ausschließlich innerhalb unseres Microsoft 365 Tenants verarbeitet und gespeichert. Microsoft verarbeitet diese Daten nur in unserem Auftrag und unter Einhaltung der geltenden Datenschutzbestimmungen der Europäischen Union (EU), insbesondere gemäß den EU-Standardvertragsklauseln und unter Nutzung von Rechenzentren innerhalb der EU.\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung bzw. vorvertragliche Maßnahmen) oder Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind.\nWenn Sie uns per Formular Anfragen zukommen lassen, werden Ihre Angaben aus dem Formular inklusive der von Ihnen dort angegebenen Kontaktdaten zur Bearbeitung der Anfrage und für den Fall von Anschlussfragen gespeichert.\n5. Webanalyse mit GoatCounter Ich nutze GoatCounter zur Reichweitenmessung dieser Website. GoatCounter ist ein datenschutzfreundlicher Webanalyse-Dienst, der ohne Cookies arbeitet und keine personenbezogenen Profile erstellt.\nAnbieter: GoatCounter (gehosteter Dienst unter goatcounter.com bzw. meiner eigenen GoatCounter-Domain).\nZwecke der Verarbeitung:\nZählung von Seitenaufrufen (Pageviews) und Basis-Statistiken (z. B. Seitenpfad, Referrer, ungefähre Region/Land, Bildschirmgröße, Sprache, Browsertyp). Verbesserung von Inhalt, Usability und Reichweite meiner Website. Welche Daten fallen an?\nAufgerufene URL/Seitenpfad und Referrer, Datum/Uhrzeit, Browser-Angaben (User-Agent), Bildschirmgröße, Sprache, ungefähre Region (aus der IP abgeleitet). Keine Cookies, kein LocalStorage. Zur Erkennung von Mehrfachaufrufen innerhalb kurzer Zeit bildet GoatCounter nur temporär im Arbeitsspeicher eine Sitzungskennung (aus Site-ID, IP und User-Agent), die durch eine Zufalls-ID ersetzt wird. IP und User-Agent werden nicht in der Datenbank gespeichert. Rechtsgrundlage:\nDie Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) an einer einfachen, datensparsamen Reichweitenmessung ohne Tracking über Websites hinweg. Nach Einschätzung des Anbieters ist hierfür keine Einwilligung/kein Cookie-Banner erforderlich, da keine personenbezogenen Daten gespeichert und keine Cookies gesetzt werden.\nWiderspruch / Opt-out:\nDas Browser-Signal „Do Not Track“ (DNT) wird respektiert; bei aktiviertem DNT wird kein Zählaufruf durchgeführt. Darüber hinaus können Content-Blocker/Adblocker die Erfassung verhindern (durch Blockieren der Domains des Dienstes, z. B. gc.zgo.at bzw. meiner GoatCounter-Subdomain). Hosting / Selbsthosting:\nGoatCounter kann als gehosteter Dienst oder selbst gehostet betrieben werden; an der oben beschriebenen Datenverarbeitung (cookielos, ohne personenbezogene Speicherung) ändert das nichts.\nWeitere Informationen:\nDetails zu Datenschutz und Technik (Pixel-Fallback, JavaScript-Einbindung) stellt der Anbieter in seiner Dokumentation bereit.\n6. Einbindung von YouTube-Videos Auf dieser Website werden Videos der Plattform YouTube (Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) eingebunden.\nZum Schutz deiner personenbezogenen Daten sind YouTube-Videos nicht automatisch aktiviert. Beim Aufruf einer Seite mit eingebetteten Videos wird zunächst lediglich ein Platzhalter angezeigt. Erst wenn du das Video durch einen aktiven Klick lädst, wird eine Verbindung zu den Servern von YouTube hergestellt.\nDatenverarbeitung erst nach Einwilligung Durch das Laden des Videos können insbesondere folgende Daten an YouTube übermittelt werden:\nIP-Adresse Informationen über den verwendeten Browser und das Endgerät Datum und Uhrzeit des Zugriffs Die zuvor besuchte Seite (Referrer) Die Einbindung erfolgt über die sogenannte „youtube-nocookie.com“-Domain, wodurch YouTube nach eigenen Angaben erst dann Cookies setzt, wenn das Video aktiv abgespielt wird. Dennoch kann nicht ausgeschlossen werden, dass Google personenbezogene Daten verarbeitet und diese auch in die USA überträgt.\nRechtsgrundlage Die Einbindung von YouTube-Videos erfolgt ausschließlich auf Grundlage deiner freiwilligen Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO, die du durch das aktive Anklicken des Video-Platzhalters erteilst.\nOhne deine Einwilligung findet keine Verbindung zu YouTube statt.\nWiderruf der Einwilligung Du kannst deine Einwilligung jederzeit widerrufen, indem du die Seite neu lädst und das Video nicht erneut aktivierst bzw. vorhandene lokale Speicherungen in deinem Browser löschst.\nWeitere Informationen\nWeitere Informationen zur Datenverarbeitung durch YouTube findest du in der Datenschutzerklärung von Google: https://policies.google.com/privacy\n7. Ihre Rechte Sie haben nach der DSGVO folgende Rechte:\nRecht auf Auskunft (Art. 15 DSGVO) Recht auf Berichtigung (Art. 16 DSGVO) Recht auf Löschung (Art. 17 DSGVO) Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) Recht auf Datenübertragbarkeit (Art. 20 DSGVO) Recht auf Widerspruch (Art. 21 DSGVO) Recht auf Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO) Zuständige Datenschutzaufsichtsbehörde in Bayern:\nBayerisches Landesamt für Datenschutzaufsicht (BayLDA)\nPromenade 18, 91522 Ansbach\nhttps://www.lda.bayern.de\n8. Änderungen dieser Datenschutzerklärung Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen des Dienstes sowie der Datenverarbeitung anzupassen.\nStand: Dezember 2025\n",
-  "wordCount" : "898",
+  "articleBody": "1. Verantwortlicher Jonas Kufner Unternehmensberatung\nFreiberufler: Jonas Kufner\nMurnauer Str. 266\n81379 München\nDeutschland\nE-Mail: info@kufner-solutions.com\nTelefon: +49 176 24893789\n2. Allgemeine Hinweise zur Datenverarbeitung Der Schutz Ihrer persönlichen Daten ist uns wichtig. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.\nBeim Besuch dieser Website werden personenbezogene Daten verarbeitet. Dazu zählen z. B. die IP-Adresse, die automatisch vom Browser an den Server übermittelt wird, sowie weitere technische Daten (Datum, Uhrzeit, Browsertyp, Betriebssystem, Referrer-URL).\n3. Hosting \u0026 Server-Logfiles Diese Website wird über GitHub Pages bereitgestellt. Beim Aufruf der Seiten werden automatisch Server-Logfiles erstellt, die Informationen wie IP-Adresse, Browsertyp, Betriebssystem, Referrer-URL, Datum und Uhrzeit des Zugriffs enthalten.\nRechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an technischer Sicherheit und Stabilität).\nDie Daten werden nicht mit anderen Datenquellen zusammengeführt.\n4. Kontaktformular Wenn Sie uns per Formular Anfragen zukommen lassen, werden Ihre Angaben aus dem Formular inklusive der von Ihnen dort angegebenen Kontaktdaten zur Bearbeitung der Anfrage und für den Fall von Anschlussfragen gespeichert.\nDiese Daten geben wir nicht ohne Ihre Einwilligung weiter.\nZur Erhebung und Verarbeitung Ihrer Anfrage nutzen wir Microsoft Forms, einen Dienst der Microsoft Corporation, der im Rahmen unserer Microsoft 365-Umgebung (Tenant) betrieben wird. Das Formular wird über einen Link auf unserer Website bereitgestellt und führt zu einer sicheren Formularseite unter der Domain forms.office.com. Die von Ihnen eingegebenen Daten werden ausschließlich innerhalb unseres Microsoft 365 Tenants verarbeitet und gespeichert. Microsoft verarbeitet diese Daten nur in unserem Auftrag und unter Einhaltung der geltenden Datenschutzbestimmungen der Europäischen Union (EU), insbesondere gemäß den EU-Standardvertragsklauseln und unter Nutzung von Rechenzentren innerhalb der EU.\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung bzw. vorvertragliche Maßnahmen) oder Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind.\nWenn Sie uns per Formular Anfragen zukommen lassen, werden Ihre Angaben aus dem Formular inklusive der von Ihnen dort angegebenen Kontaktdaten zur Bearbeitung der Anfrage und für den Fall von Anschlussfragen gespeichert.\n5. Webanalyse mit GoatCounter Ich nutze GoatCounter zur Reichweitenmessung dieser Website. GoatCounter ist ein datenschutzfreundlicher Webanalyse-Dienst, der ohne Cookies arbeitet und keine personenbezogenen Profile erstellt.\nAnbieter: GoatCounter (gehosteter Dienst unter goatcounter.com bzw. meiner eigenen GoatCounter-Domain).\nZwecke der Verarbeitung:\nZählung von Seitenaufrufen (Pageviews) und Basis-Statistiken (z. B. Seitenpfad, Referrer, ungefähre Region/Land, Bildschirmgröße, Sprache, Browsertyp). Verbesserung von Inhalt, Usability und Reichweite meiner Website. Welche Daten fallen an?\nAufgerufene URL/Seitenpfad und Referrer, Datum/Uhrzeit, Browser-Angaben (User-Agent), Bildschirmgröße, Sprache, ungefähre Region (aus der IP abgeleitet). Keine Cookies, kein LocalStorage. Zur Erkennung von Mehrfachaufrufen innerhalb kurzer Zeit bildet GoatCounter nur temporär im Arbeitsspeicher eine Sitzungskennung (aus Site-ID, IP und User-Agent), die durch eine Zufalls-ID ersetzt wird. IP und User-Agent werden nicht in der Datenbank gespeichert. Rechtsgrundlage:\nDie Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) an einer einfachen, datensparsamen Reichweitenmessung ohne Tracking über Websites hinweg. Nach Einschätzung des Anbieters ist hierfür keine Einwilligung/kein Cookie-Banner erforderlich, da keine personenbezogenen Daten gespeichert und keine Cookies gesetzt werden.\nWiderspruch / Opt-out:\nDas Browser-Signal „Do Not Track“ (DNT) wird respektiert; bei aktiviertem DNT wird kein Zählaufruf durchgeführt. Darüber hinaus können Content-Blocker/Adblocker die Erfassung verhindern (durch Blockieren der Domains des Dienstes, z. B. gc.zgo.at bzw. meiner GoatCounter-Subdomain). Hosting / Selbsthosting:\nGoatCounter kann als gehosteter Dienst oder selbst gehostet betrieben werden; an der oben beschriebenen Datenverarbeitung (cookielos, ohne personenbezogene Speicherung) ändert das nichts.\nWeitere Informationen:\nDetails zu Datenschutz und Technik (Pixel-Fallback, JavaScript-Einbindung) stellt der Anbieter in seiner Dokumentation bereit.\n6. Google Tag zur Kampagnenmessung Auf dieser Website wird das Google Tag eingesetzt. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.\nDas Google Tag wird verwendet, um die Leistung meiner Google-Kampagnen zu messen. Dabei kann insbesondere nachvollzogen werden, ob Besucher nach dem Klick auf eine Anzeige mit meiner Website interagieren, zum Beispiel durch den Aufruf bestimmter Seiten oder durch das Absenden einer Kontaktanfrage. Dies hilft mir, die Wirksamkeit meiner Werbemaßnahmen zu bewerten und mein Angebot gezielt zu verbessern.\nDas Google Tag wird auf dieser Website nur aktiviert, wenn Sie über das Cookie-Banner Ihre Einwilligung erteilen. Ohne Ihre Einwilligung bleiben die damit verbundene Speicherung und Auswertung deaktiviert. Ihre Einwilligung wird in Ihrem Browser gespeichert und kann jederzeit mit Wirkung für die Zukunft widerrufen werden.\nWelche Daten koennen verarbeitet werden?\nIP-Adresse technische Informationen zum Browser und Endgeraet aufgerufene Seiten und Interaktionen auf der Website Referrer-Informationen Zeitstempel von Seitenaufrufen und Aktionen Es kann nicht ausgeschlossen werden, dass in diesem Zusammenhang auch personenbezogene Daten an Google-Server in den USA uebermittelt werden.\nRechtsgrundlage:\nArt. 6 Abs. 1 lit. a DSGVO (Einwilligung).\nWeitere Informationen:\nWeitere Informationen zur Datenverarbeitung durch Google finden Sie unter:\nhttps://policies.google.com/privacy\n7. Einbindung von YouTube-Videos Auf dieser Website werden Videos der Plattform YouTube (Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) eingebunden.\nZum Schutz deiner personenbezogenen Daten sind YouTube-Videos nicht automatisch aktiviert. Beim Aufruf einer Seite mit eingebetteten Videos wird zunächst lediglich ein Platzhalter angezeigt. Erst wenn du das Video durch einen aktiven Klick lädst, wird eine Verbindung zu den Servern von YouTube hergestellt.\nDatenverarbeitung erst nach Einwilligung Durch das Laden des Videos können insbesondere folgende Daten an YouTube übermittelt werden:\nIP-Adresse Informationen über den verwendeten Browser und das Endgerät Datum und Uhrzeit des Zugriffs Die zuvor besuchte Seite (Referrer) Die Einbindung erfolgt über die sogenannte „youtube-nocookie.com“-Domain, wodurch YouTube nach eigenen Angaben erst dann Cookies setzt, wenn das Video aktiv abgespielt wird. Dennoch kann nicht ausgeschlossen werden, dass Google personenbezogene Daten verarbeitet und diese auch in die USA überträgt.\nRechtsgrundlage Die Einbindung von YouTube-Videos erfolgt ausschließlich auf Grundlage deiner freiwilligen Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO, die du durch das aktive Anklicken des Video-Platzhalters erteilst.\nOhne deine Einwilligung findet keine Verbindung zu YouTube statt.\nWiderruf der Einwilligung Du kannst deine Einwilligung jederzeit widerrufen, indem du die Seite neu lädst und das Video nicht erneut aktivierst bzw. vorhandene lokale Speicherungen in deinem Browser löschst.\nWeitere Informationen\nWeitere Informationen zur Datenverarbeitung durch YouTube findest du in der Datenschutzerklärung von Google: https://policies.google.com/privacy\n8. Ihre Rechte Sie haben nach der DSGVO folgende Rechte:\nRecht auf Auskunft (Art. 15 DSGVO) Recht auf Berichtigung (Art. 16 DSGVO) Recht auf Löschung (Art. 17 DSGVO) Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO) Recht auf Datenübertragbarkeit (Art. 20 DSGVO) Recht auf Widerspruch (Art. 21 DSGVO) Recht auf Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO) Zuständige Datenschutzaufsichtsbehörde in Bayern:\nBayerisches Landesamt für Datenschutzaufsicht (BayLDA)\nPromenade 18, 91522 Ansbach\nhttps://www.lda.bayern.de\n9. Änderungen dieser Datenschutzerklärung Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen des Dienstes sowie der Datenverarbeitung anzupassen.\nStand: Dezember 2025\n",
+  "wordCount" : "1090",
   "inLanguage": "de",
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "0001-01-01T00:00:00Z",
@@ -392,7 +551,7 @@
     <div class="post-description">
       Informationen zur Datenverarbeitung nach DSGVO
     </div>
-    <div class="post-meta"><span>5 Minuten</span>&nbsp;·&nbsp;<span>Jonas Kufner</span>&nbsp;|&nbsp;<span>Übersetzungen:</span>
+    <div class="post-meta"><span>6 Minuten</span>&nbsp;·&nbsp;<span>Jonas Kufner</span>&nbsp;|&nbsp;<span>Übersetzungen:</span>
 <ul class="i18n_list">
     <li>
         <a href="https://jonaskufner.com/en/datenschutz/">En</a>
@@ -456,7 +615,26 @@ GoatCounter kann als gehosteter Dienst oder selbst gehostet betrieben werden; an
 <p><strong>Weitere Informationen:</strong><br>
 Details zu Datenschutz und Technik (Pixel-Fallback, JavaScript-Einbindung) stellt der Anbieter in seiner Dokumentation bereit.</p>
 <hr>
-<h2 id="6-einbindung-von-youtube-videos">6. Einbindung von YouTube-Videos<a hidden class="anchor" aria-hidden="true" href="#6-einbindung-von-youtube-videos">#</a></h2>
+<h2 id="6-google-tag-zur-kampagnenmessung">6. Google Tag zur Kampagnenmessung<a hidden class="anchor" aria-hidden="true" href="#6-google-tag-zur-kampagnenmessung">#</a></h2>
+<p>Auf dieser Website wird das <strong>Google Tag</strong> eingesetzt. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.</p>
+<p>Das Google Tag wird verwendet, um die Leistung meiner <strong>Google-Kampagnen</strong> zu messen. Dabei kann insbesondere nachvollzogen werden, ob Besucher nach dem Klick auf eine Anzeige mit meiner Website interagieren, zum Beispiel durch den Aufruf bestimmter Seiten oder durch das Absenden einer Kontaktanfrage. Dies hilft mir, die Wirksamkeit meiner Werbemaßnahmen zu bewerten und mein Angebot gezielt zu verbessern.</p>
+<p>Das Google Tag wird auf dieser Website nur aktiviert, wenn Sie über das Cookie-Banner Ihre Einwilligung erteilen. Ohne Ihre Einwilligung bleiben die damit verbundene Speicherung und Auswertung deaktiviert. Ihre Einwilligung wird in Ihrem Browser gespeichert und kann jederzeit mit Wirkung für die Zukunft widerrufen werden.</p>
+<p><strong>Welche Daten koennen verarbeitet werden?</strong></p>
+<ul>
+<li>IP-Adresse</li>
+<li>technische Informationen zum Browser und Endgeraet</li>
+<li>aufgerufene Seiten und Interaktionen auf der Website</li>
+<li>Referrer-Informationen</li>
+<li>Zeitstempel von Seitenaufrufen und Aktionen</li>
+</ul>
+<p>Es kann nicht ausgeschlossen werden, dass in diesem Zusammenhang auch personenbezogene Daten an Google-Server in den USA uebermittelt werden.</p>
+<p><strong>Rechtsgrundlage:</strong><br>
+Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).</p>
+<p><strong>Weitere Informationen:</strong><br>
+Weitere Informationen zur Datenverarbeitung durch Google finden Sie unter:<br>
+<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
+<hr>
+<h2 id="7-einbindung-von-youtube-videos">7. Einbindung von YouTube-Videos<a hidden class="anchor" aria-hidden="true" href="#7-einbindung-von-youtube-videos">#</a></h2>
 <p>Auf dieser Website werden Videos der Plattform YouTube (Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) eingebunden.</p>
 <p>Zum Schutz deiner personenbezogenen Daten sind YouTube-Videos nicht automatisch aktiviert. Beim Aufruf einer Seite mit eingebetteten Videos wird zunächst lediglich ein Platzhalter angezeigt. Erst wenn du das Video durch einen aktiven Klick lädst, wird eine Verbindung zu den Servern von YouTube hergestellt.</p>
 <h3 id="datenverarbeitung-erst-nach-einwilligung">Datenverarbeitung erst nach Einwilligung<a hidden class="anchor" aria-hidden="true" href="#datenverarbeitung-erst-nach-einwilligung">#</a></h3>
@@ -477,7 +655,7 @@ Details zu Datenschutz und Technik (Pixel-Fallback, JavaScript-Einbindung) stell
 <p>Weitere Informationen zur Datenverarbeitung durch YouTube findest du in der Datenschutzerklärung von Google:
 <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
 <hr>
-<h2 id="7-ihre-rechte">7. Ihre Rechte<a hidden class="anchor" aria-hidden="true" href="#7-ihre-rechte">#</a></h2>
+<h2 id="8-ihre-rechte">8. Ihre Rechte<a hidden class="anchor" aria-hidden="true" href="#8-ihre-rechte">#</a></h2>
 <p>Sie haben nach der DSGVO folgende Rechte:</p>
 <ul>
 <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
@@ -493,7 +671,7 @@ Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)<br>
 Promenade 18, 91522 Ansbach<br>
 <a href="https://www.lda.bayern.de">https://www.lda.bayern.de</a></p>
 <hr>
-<h2 id="8-änderungen-dieser-datenschutzerklärung">8. Änderungen dieser Datenschutzerklärung<a hidden class="anchor" aria-hidden="true" href="#8-änderungen-dieser-datenschutzerklärung">#</a></h2>
+<h2 id="9-änderungen-dieser-datenschutzerklärung">9. Änderungen dieser Datenschutzerklärung<a hidden class="anchor" aria-hidden="true" href="#9-änderungen-dieser-datenschutzerklärung">#</a></h2>
 <p>Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen des Dienstes sowie der Datenverarbeitung anzupassen.</p>
 <p>Stand: Dezember 2025</p>
 
@@ -779,7 +957,53 @@ Promenade 18, 91522 Ansbach<br>
       async
       data-goatcounter="https://jonaskufnercom.goatcounter.com/count"
       src="https://gc.zgo.at/count.js"></script>
-    <noscript><img src="https://jonaskufnercom.goatcounter.com/count?p=%2fde%2fabout%2f" alt="" /></noscript>
+    <noscript><img src="https://jonaskufnercom.goatcounter.com/count?p=%2fde%2fabout%2f" alt="" /></noscript><div class="consent-banner" id="consent-banner" role="dialog" aria-live="polite" aria-label="Cookie-Einwilligung">
+  <p class="consent-banner__title">Datenschutz-Einstellungen</p>
+  <p class="consent-banner__text">
+    Diese Website nutzt Google-Tags nur nach Ihrer Auswahl. Sie können der Messung zustimmen oder sie ablehnen.
+    Details finden Sie in der <a href="https://jonaskufner.com/de/datenschutz/">Datenschutzerklärung</a>.
+  </p>
+  <div class="consent-banner__actions">
+    <button type="button" class="consent-banner__button consent-banner__button--primary" data-consent-accept>
+      Alle akzeptieren
+    </button>
+    <button type="button" class="consent-banner__button" data-consent-reject>
+      Ablehnen
+    </button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    function wireConsentButtons(root) {
+      if (!root) {
+        return;
+      }
+
+      var acceptButton = root.querySelector('[data-consent-accept]');
+      var rejectButton = root.querySelector('[data-consent-reject]');
+
+      if (acceptButton) {
+        acceptButton.addEventListener('click', function () {
+          if (window.KufnerConsent) {
+            window.KufnerConsent.acceptAll();
+          }
+        });
+      }
+
+      if (rejectButton) {
+        rejectButton.addEventListener('click', function () {
+          if (window.KufnerConsent) {
+            window.KufnerConsent.rejectAll();
+          }
+        });
+      }
+    }
+
+    wireConsentButtons(document);
+  })();
+</script>
+
 
 <script>
     let menu = document.getElementById('menu')
