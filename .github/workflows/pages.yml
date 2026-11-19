@@ -1,0 +1,101 @@
+# Author: Jonas Kufner
+# Web:    https://jonaskufner.com
+#
+# pages.yml - deploys the hand-edited static site to GitHub Pages (US-3, US-4).
+#
+# Only an explicit allow-list of top-level files and folders is copied into _site;
+# everything else (README.md, CHANGELOG.md, SECURITY.md, scripts/, .github/, .git/,
+# "index copy.html", Hugo leftovers *.md_tbd) is never staged. A guard step fails
+# the build if any of these, or any symlink, ends up in _site, or if a required
+# file is missing. Only _site is uploaded and deployed.
+#
+# Requires: repo Settings > Pages > Source = "GitHub Actions".
+# Trigger branch: "main" (confirmed as the default branch).
+# Actions are pinned to full commit SHAs; the tag is noted next to each pin.
+# UNVERIFIED: the SHAs are still not verified. The developer must check each one
+# against its release tag (git ls-remote --tags https://github.com/<owner>/<repo> <tag>;
+# for annotated tags use the "^{}" line) before relying on this workflow.
+# No secrets are used; the deploy job authenticates with the OIDC token (id-token: write).
+
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege: the build job only reads the repo. Only the deploy job gets
+# pages: write and id-token: write (job-level block below).
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Stage site from allow-list
+        shell: bash
+        run: |
+          set -eu
+          rm -rf _site && mkdir _site
+          # Allow-list: add new top-level entries here.
+          # -P: copy a symlink as a link (never its target); the guard then rejects it.
+          cp -P -- index.html 404.html CNAME .nojekyll robots.txt sitemap.xml landing-sitemap.xml index.xml index.json _site/
+          rsync -a --exclude '*.md_tbd' -- about assets categories contact css datenschutz de en impressum js landing posts tags ueber-mich _site/
+
+      - name: Guard staged site
+        shell: bash
+        run: |
+          set -eu
+          fail=0
+          for p in README.md CHANGELOG.md SECURITY.md scripts .github .git 'index copy.html'; do
+            if [ -e "_site/$p" ] || [ -L "_site/$p" ]; then
+              echo "forbidden entry in _site: $p" >&2
+              fail=1
+            fi
+          done
+          if [ -n "$(find _site -name '*.md_tbd' -print -quit)" ]; then
+            echo "_site contains *.md_tbd files" >&2
+            fail=1
+          fi
+          if [ -n "$(find _site -type l -print -quit)" ]; then
+            echo "_site contains symlinks" >&2
+            fail=1
+          fi
+          for f in index.html 404.html CNAME .nojekyll robots.txt sitemap.xml landing-sitemap.xml; do
+            if [ ! -f "_site/$f" ]; then
+              echo "required file missing from _site: $f" >&2
+              fail=1
+            fi
+          done
+          if [ "$fail" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
